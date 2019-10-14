@@ -1,0 +1,15 @@
+{
+  "name": "membership-airbnb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/always-awake/membership-airbnb.git",
+  "author": "always-awake <leemirim9654@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ]
+}
