@@ -1,0 +1,6 @@
+# general .gitignore file list
+node_modules
+.eslintrc.json
+.env
+
+# server's .gitignore file list
