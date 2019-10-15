@@ -1,6 +1,9 @@
 const dotenv = require('dotenv');
 const app = require('./app');
-require('./db');
+const sequelize = require('./db');
+require('./User/models');
+require('./Room/models');
+require('./Reservation/models');
 
 dotenv.config();
 
@@ -9,3 +12,5 @@ const handleListening = () => {
   console.log(`✅  Listening on: http://localhost:${PORT}`);
 };
 app.listen(PORT, handleListening);
+
+sequelize.sync();
