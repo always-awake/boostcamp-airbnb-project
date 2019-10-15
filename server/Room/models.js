@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../db');
+const sequelize = require('../config/db');
 const user = require('../User/models');
 
 const room = sequelize.define('room', {
