@@ -14,11 +14,11 @@ const room = sequelize.define('room', {
     allowNull: false,
   },
   bio: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING(500),
     allowNull: false,
   },
   mainPhoto: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING(500),
     allowNull: false,
   },
   type: {
@@ -33,18 +33,22 @@ const room = sequelize.define('room', {
   price: {
     type: Sequelize.BIGINT,
     allowNull: false,
+    defaultValue: 0,
   },
   bedCount: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    defaultValue: 0,
   },
   bedroomCount: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    defaultValue: 0,
   },
   bathroomCount: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    defaultValue: 0,
   },
   isSuperHost: {
     type: Sequelize.BOOLEAN,
