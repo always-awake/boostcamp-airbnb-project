@@ -3,22 +3,10 @@ const sequelize = require('../config/db');
 const user = require('../User/models');
 
 const room = sequelize.define('room', {
-  pk: {
+  id: {
     type: Sequelize.BIGINT,
     autoIncrement: true,
     primaryKey: true,
-    allowNull: false,
-  },
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  bio: {
-    type: Sequelize.STRING(500),
-    allowNull: false,
-  },
-  mainPhoto: {
-    type: Sequelize.STRING(500),
     allowNull: false,
   },
   type: {
@@ -28,6 +16,14 @@ const room = sequelize.define('room', {
       'Hotel room',
       'Shared room',
     ),
+    allowNull: false,
+  },
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  thumbnail: {
+    type: Sequelize.STRING(500),
     allowNull: false,
   },
   price: {
@@ -75,8 +71,13 @@ const room = sequelize.define('room', {
     allowNull: false,
     defaultValue: 0,
   },
-  facilities: {
+  option: {
     type: Sequelize.STRING,
+  },
+  star: {
+    type: Sequelize.FLOAT,
+    allowNull: false,
+    defaultValue: 0,
   },
 }, {
   charset: 'utf8',
@@ -87,10 +88,10 @@ user.hasMany(
   room, {
     as: 'rooms',
     foreignKey: {
-      name: 'hostPk',
+      name: 'hostId',
       allowNull: false,
     },
-    sourceKey: 'pk',
+    sourceKey: 'id',
   },
 );
 
