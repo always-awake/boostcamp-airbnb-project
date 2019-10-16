@@ -21,6 +21,9 @@ const user = sequelize.define('user', {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  salt: {
+    type: Sequelize.STRING(300),
+  },
 }, {
   tableName: 'users',
 });
