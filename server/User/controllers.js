@@ -35,24 +35,26 @@ const login = async (req, res) => {
 
 const signUp = async (req, res) => {
   const { userId, userPw, userName } = req.body;
-  const newUser = await userModel.create({
-    id: userId,
-    password: userPw,
-    name: userName,
-  }) || false;
+  try {
+    const newUser = await userModel.create({
+      id: userId,
+      password: userPw,
+      name: userName,
+    }) || false;
 
-  if (newUser) {
-    res.status(201);
-    res.json({
-      msg: 'sign up success!',
-      data: {
-        jwtToken: createJwtToken(newUser, '5m'),
-      },
-    });
-  } else {
+    if (newUser) {
+      res.status(201);
+      res.json({
+        msg: 'sign up success!',
+        data: {
+          jwtToken: createJwtToken(newUser, '5m'),
+        },
+      });
+    }
+  } catch (e) {
     res.status(500);
     res.json({
-      msg: 'sign up fail! try again!',
+      msg: 'sign up fail! Input another userID!',
     });
   }
 };
