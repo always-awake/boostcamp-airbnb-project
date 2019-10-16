@@ -17,6 +17,22 @@ const createHashPassword = (userPw) => {
   };
 };
 
+/**
+ * 문자열로 된 inputPw를 crypto 모듈과 salt를 이용해 암호화된 pw를 구하는 함수
+ * 암호화된 pw를 구하여 inputPw와의 일치 여부를 리턴하는 함수
+ * @param { String } userPw
+ * @param { uuid/v4 } salt
+ */
+const checkPwValidation = (inputPw, savedPw, salt) => {
+  const hashPassword = crypto
+    .createHash('sha512')
+    .update(inputPw + salt)
+    .digest('base64');
+  return (hashPassword === savedPw);
+};
+
+
 module.exports = {
   createHashPassword,
+  checkPwValidation,
 };
