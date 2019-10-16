@@ -14,7 +14,6 @@ const login = async (req, res) => {
       id: userId,
       password: userPw,
     },
-    attributes: ['pk', 'id', 'name'],
   }) || false;
 
   if (authUser) {
@@ -33,6 +32,32 @@ const login = async (req, res) => {
   }
 };
 
+
+const signUp = async (req, res) => {
+  const { userId, userPw, userName } = req.body;
+  const newUser = await userModel.create({
+    id: userId,
+    password: userPw,
+    name: userName,
+  }) || false;
+
+  if (newUser) {
+    res.status(201);
+    res.json({
+      msg: 'sign up success!',
+      data: {
+        jwtToken: createJwtToken(newUser, '5m'),
+      },
+    });
+  } else {
+    res.status(500);
+    res.json({
+      msg: 'sign up fail! try again!',
+    });
+  }
+};
+
 module.exports = {
   login,
+  signUp,
 };
