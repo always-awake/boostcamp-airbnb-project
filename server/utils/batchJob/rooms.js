@@ -1,7 +1,7 @@
 const csv = require('csvtojson/v2');
 const roomModel = require('../../Room/models');
 
-const roomCsvFilePath = './utils/batch/csv/room.csv';
+const roomCsvFilePath = './utils/batchJob/csv/room.csv';
 
 /**
  * room.csv 파일을 읽어와 csv 데이터를 json으로 변환하는 함수

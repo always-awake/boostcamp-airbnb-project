@@ -1,7 +1,7 @@
 const csv = require('csvtojson');
 const userModel = require('../../User/models');
 
-const userCsvFilePath = './utils/batch/csv/user.csv';
+const userCsvFilePath = './utils/batchJob/csv/user.csv';
 
 /**
  * user.csv 파일을 읽어와 csv 데이터를 json으로 변환하는 함수
