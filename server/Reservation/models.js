@@ -4,7 +4,7 @@ const user = require('../User/models');
 const room = require('../Room/models');
 
 const reservation = sequelize.define('reservation', {
-  pk: {
+  id: {
     type: Sequelize.BIGINT,
     autoIncrement: true,
     primaryKey: true,
@@ -49,10 +49,10 @@ user.hasMany(
   reservation, {
     as: 'reservations',
     foreignKey: {
-      name: 'guestPk',
+      name: 'guestId',
       allowNull: false,
     },
-    sourceKey: 'pk',
+    sourceKey: 'id',
   },
 );
 
@@ -60,10 +60,10 @@ room.hasMany(
   reservation, {
     as: 'reservations',
     foreignKey: {
-      name: 'roomPk',
+      name: 'roomId',
       allowNull: false,
     },
-    sourceKey: 'pk',
+    sourceKey: 'id',
   },
 );
 
