@@ -14,6 +14,7 @@ const login = async (req, res) => {
       id: userId,
       password: userPw,
     },
+    attributes: ['pk', 'id', 'name'],
   }) || false;
 
   if (authUser) {
