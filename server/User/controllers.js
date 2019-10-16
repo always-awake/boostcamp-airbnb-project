@@ -19,11 +19,13 @@ const login = async (req, res) => {
 
   if (authUser) {
     res.status(200);
+    res.cookie(
+      'jwtToken',
+      createJwtToken(authUser, '5m'),
+      { httpOnly: true, signed: true },
+    );
     res.json({
       msg: 'login success!',
-      data: {
-        jwtToken: createJwtToken(authUser, '5m'),
-      },
     });
   } else {
     res.status(401);
@@ -44,19 +46,21 @@ const signUp = async (req, res) => {
   const { hashPassword, uuidSalt } = createHashPassword(userPw);
   try {
     const newUser = await userModel.create({
-      id: userId,
-      password: hashPassword,
+      accountId: userId,
+      accountPw: hashPassword,
       name: userName,
       salt: uuidSalt,
     }) || false;
 
     if (newUser) {
       res.status(201);
+      res.cookie(
+        'jwtToken',
+        createJwtToken(newUser, '5m'),
+        { httpOnly: true, signed: true },
+      );
       res.json({
         msg: 'sign up success!',
-        data: {
-          jwtToken: createJwtToken(newUser, '5m'),
-        },
       });
     }
   } catch (e) {
