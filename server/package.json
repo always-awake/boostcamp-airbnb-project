@@ -10,11 +10,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "csvtojson": "^2.0.10",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^1.7.0",
-    "sequelize": "^5.19.6"
+    "sequelize": "^5.19.6",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "eslint": "^6.5.1",

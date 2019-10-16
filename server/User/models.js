@@ -2,17 +2,18 @@ const Sequelize = require('sequelize');
 const sequelize = require('../config/db');
 
 const user = sequelize.define('user', {
-  pk: {
+  id: {
     type: Sequelize.BIGINT,
     autoIncrement: true,
     primaryKey: true,
     allowNull: false,
   },
-  id: {
+  accountId: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
   },
-  password: {
+  accountPw: {
     type: Sequelize.STRING,
     allowNull: false,
   },
@@ -23,6 +24,5 @@ const user = sequelize.define('user', {
 }, {
   tableName: 'users',
 });
-
 
 module.exports = user;
