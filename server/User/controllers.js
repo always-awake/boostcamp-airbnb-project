@@ -1,5 +1,6 @@
 const userModel = require('./models');
 const { createJwtToken } = require('../utils/jwt');
+const { createHashPassword } = require('../utils/pwEncryption');
 
 /**
  * 유저 로그인 요청을 처리하는 컨트롤러 함수
@@ -32,14 +33,21 @@ const login = async (req, res) => {
   }
 };
 
-
+/**
+ * 회원가입 요청을 처리하는 컨트롤러 함수
+ * req 인자 내 비밀번호 값을 암호화하여 저장함
+ * @param {*} req
+ * @param {*} res
+ */
 const signUp = async (req, res) => {
   const { userId, userPw, userName } = req.body;
+  const { hashPassword, uuidSalt } = createHashPassword(userPw);
   try {
     const newUser = await userModel.create({
       id: userId,
-      password: userPw,
+      password: hashPassword,
       name: userName,
+      salt: uuidSalt,
     }) || false;
 
     if (newUser) {
