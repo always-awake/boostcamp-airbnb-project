@@ -21,8 +21,20 @@ const sequelize = new Sequelize(
 
 sequelize
   .authenticate()
-  .then(() => {
+  .then(async () => {
     console.log('✅  Connection has been established successfully.');
+
+    // database sync
+    require('../User/models');
+    require('../Room/models');
+    require('../Reservation/models');
+    await sequelize.sync();
+
+    // update dummy data
+    const { updateUserData } = require('../utils/batchJob/users');
+    const { updateRoomData } = require('../utils/batchJob/rooms');
+    await updateUserData();
+    await updateRoomData();
   })
   .catch((err) => {
     console.error('❌  Unable to connect to the database:', err);

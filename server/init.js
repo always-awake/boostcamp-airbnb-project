@@ -15,11 +15,3 @@ app.set('port', PORT);
 // setting server
 const server = http.createServer(app);
 server.listen(PORT, handleListening);
-
-// sync database
-const sequelize = require('./config/db');
-require('./User/models');
-require('./Room/models');
-require('./Reservation/models');
-
-sequelize.sync();
