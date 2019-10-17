@@ -1,5 +1,10 @@
 const reservationModel = require('../Reservation/models');
 
+/**
+ * 예약 데이터 생성 요청을 처리하는 함수
+ * @param {*} req
+ * @param {*} res
+ */
 const createReservation = async (req, res) => {
   const { user } = req;
   const {

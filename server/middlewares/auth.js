@@ -5,6 +5,12 @@ const userModel = require('../User/models');
 
 dotenv.config();
 
+/**
+ * cookie 내 jwt의 유효성을 check하는 미들웨어 함수
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ */
 const isAuthUser = async (req, res, next) => {
   const jwtToken = req.signedCookies.jwtToken || false;
   if (jwtToken) {
