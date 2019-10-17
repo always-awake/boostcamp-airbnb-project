@@ -30,6 +30,19 @@ const addPriceoption = (req) => {
   return filterOption;
 };
 
+/**
+ * 정수값을 갖고 있지 않은 필터링 옵션인지의 여부를 판별하는 유틸 함수
+ * @param { String } optionName
+ * @returns { Boolean }
+ */
+const onlyIntOptionValue = (optionName) => {
+  const priceResult = !optionName.includes('Price');
+  const nameResult = !optionName.includes('isSuperHost');
+  const checkResult = !optionName.includes('check');
+  return priceResult && nameResult && checkResult;
+};
+
 module.exports = {
   addPriceoption,
+  onlyIntOptionValue,
 };
