@@ -11,10 +11,10 @@ const room = sequelize.define('room', {
   },
   type: {
     type: Sequelize.ENUM(
-      'Whole house',
-      'Private room',
-      'Hotel room',
-      'Shared room',
+      'Whole',
+      'Private',
+      'Hotel',
+      'Shared',
     ),
     allowNull: false,
   },
