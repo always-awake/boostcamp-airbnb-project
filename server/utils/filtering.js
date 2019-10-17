@@ -8,7 +8,7 @@ const { Op } = Sequelize;
  * @param { Object } req
  * @return { Object } filterOption
  */
-const addPriceoption = (req) => {
+const addPriceOption = (req) => {
   const { filterOption } = req;
   const minPrice = req.query.minPrice || false;
   const maxPrice = req.query.maxPrice || false;
@@ -43,6 +43,6 @@ const onlyIntOptionValue = (optionName) => {
 };
 
 module.exports = {
-  addPriceoption,
+  addPriceOption,
   onlyIntOptionValue,
 };
