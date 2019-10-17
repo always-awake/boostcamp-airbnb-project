@@ -9,8 +9,8 @@ const jwtConfig = require('../config/jwt');
 const createJwtToken = (authUser, duration) => {
   const jwtToken = jwt.sign(
     {
-      pk: authUser.pk,
       id: authUser.id,
+      accountId: authUser.accountId,
       name: authUser.name,
     },
     jwtConfig.secretKey,
