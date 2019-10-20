@@ -93,9 +93,7 @@ const checkReservationOption = ({ checkIn, checkOut }) => {
  * @param {Array} reservedRoomList
  */
 const refineReservations = (reservations) => {
-  const reservedRoomIdList = reservations.map((reservation) => {
-    return reservation.roomId;
-  });
+  const reservedRoomIdList = reservations.map((reservation) => reservation.roomId);
   return Array.from(new Set(reservedRoomIdList));
 };
 
