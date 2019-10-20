@@ -50,12 +50,11 @@ const addDatePriceOption = (req, reservedRoomIdList) => {
  * @returns { Boolean }
  */
 const onlyIntOption = (optionName) => {
-  const priceResult = !optionName.includes('Price');
-  const hostResult = !optionName.includes('isSuperHost');
-  const checkResult = !optionName.includes('check');
-  const typeResult = !optionName.includes('type');
-  const nameResult = !optionName.includes('name');
-  return priceResult && hostResult && checkResult && typeResult && nameResult;
+  const bedResult = optionName.includes('bedCount');
+  const bedroomResult = optionName.includes('bedroomCount');
+  const bathroomResult = optionName.includes('bathroomCount');
+  const headCountResult = optionName.includes('headCount');
+  return bedResult || bedroomResult || bathroomResult || headCountResult;
 };
 
 /**
@@ -64,10 +63,11 @@ const onlyIntOption = (optionName) => {
  * @param { String } optionName
  * @returns { Boolean }
  */
-const notPriceCheckOption = (optionName) => {
+const notPriceCheckPageOption = (optionName) => {
   const priceResult = !optionName.includes('Price');
   const checkResult = !optionName.includes('check');
-  return priceResult && checkResult;
+  const pageResult = !optionName.includes('page');
+  return priceResult && checkResult && pageResult;
 };
 
 /**
@@ -110,11 +110,23 @@ const refineReservations = (reservations) => {
   return Array.from(new Set(reservedRoomIdList));
 };
 
+/**
+ * 페이지네이션 기능 구현 시, 조회할 숙소 목록의 offset을 구하는 유틸 함수
+ * @param { Number } page
+ * @param { Number } roomCountPerPage
+ */
+const calculateOffset = (page, roomCountPerPage) => {
+  const firstPage = 1;
+  const zeroOffset = 0;
+  return (page > firstPage) ? roomCountPerPage * (page - firstPage) : zeroOffset;
+};
+
 module.exports = {
   addPriceOption,
   onlyIntOption,
   checkReservationOption,
-  notPriceCheckOption,
+  notPriceCheckPageOption,
   refineReservations,
   addDatePriceOption,
+  calculateOffset,
 };
