@@ -5,6 +5,7 @@ const {
   checkReservationOption,
   refineReservations,
   addDatePriceOption,
+  calculateOffset,
 } = require('../utils/filtering');
 
 /**
@@ -18,10 +19,16 @@ const filterWithDate = async (req, res) => {
       where: checkReservationOption(req.query),
       attributes: ['roomId'],
     });
+
+    const { page } = req.query;
+    const roomCountPerPage = 1;
     const reservedRoomIdList = refineReservations(overlapedReservations);
     const roomList = await roomModel.findAll({
       where: addDatePriceOption(req, reservedRoomIdList),
+      offset: calculateOffset(page, roomCountPerPage),
+      limit: roomCountPerPage,
     });
+
     res.status(200).json({
       msg: 'Filtering Success!',
       data: {
@@ -43,8 +50,12 @@ const filterWithDate = async (req, res) => {
  */
 const filterWithoutDate = async (req, res) => {
   try {
+    const { page } = req.query;
+    const roomCountPerPage = 1;
     const roomList = await roomModel.findAll({
       where: addPriceOption(req),
+      offset: calculateOffset(page, roomCountPerPage),
+      limit: roomCountPerPage,
     });
     res.status(200).json({
       msg: 'Filtering Success!',

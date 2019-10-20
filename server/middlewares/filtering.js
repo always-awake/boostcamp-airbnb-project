@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const {
   onlyIntOption,
-  notPriceCheckOption,
+  notPriceCheckPageOption,
 } = require('../utils/filtering');
 
 const { Op } = Sequelize;
@@ -27,7 +27,7 @@ const refineFilterOptions = (req, res, next) => {
       filterOption[optionName] = {
         [Op.gte]: parseInt(optionValue, 10),
       };
-    } else if (notPriceCheckOption(optionName)) {
+    } else if (notPriceCheckPageOption(optionName)) {
       filterOption[optionName] = optionValue;
     }
   });
