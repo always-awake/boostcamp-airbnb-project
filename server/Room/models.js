@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/db');
-const user = require('../User/models');
+const reservationModel = require('../Reservation/models');
 
 const room = sequelize.define('room', {
   id: {
@@ -84,11 +84,11 @@ const room = sequelize.define('room', {
   tableName: 'rooms',
 });
 
-user.hasMany(
-  room, {
-    as: 'rooms',
+room.hasMany(
+  reservationModel, {
+    as: 'reservations',
     foreignKey: {
-      name: 'hostId',
+      name: 'roomId',
       allowNull: false,
     },
     sourceKey: 'id',
