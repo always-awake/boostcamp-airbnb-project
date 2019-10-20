@@ -39,10 +39,43 @@ const onlyIntOptionValue = (optionName) => {
   const priceResult = !optionName.includes('Price');
   const nameResult = !optionName.includes('isSuperHost');
   const checkResult = !optionName.includes('check');
-  return priceResult && nameResult && checkResult;
+  const typeResult = !optionName.includes('type');
+  return priceResult && nameResult && checkResult && typeResult;
+};
+
+/**
+ * 예약 테이블에서 checkIn ~ checkOut 기간과 겹치는 예약을 필터링 할 때 사용될 where 조건을 리턴하는 유틸함수
+ * @param {checkIn, checkOut}
+ */
+const checkReservationOption = ({ checkIn, checkOut }) => {
+  const checkInDate = new Date(checkIn);
+  const checkOutDate = new Date(checkOut);
+  return {
+    [Op.or]: {
+      [Op.or]: {
+        checkIn: {
+          [Op.gte]: checkInDate,
+          [Op.lt]: checkOutDate,
+        },
+        checkOut: {
+          [Op.gt]: checkInDate,
+          [Op.lt]: checkOutDate,
+        },
+      },
+      [Op.and]: {
+        checkIn: {
+          [Op.lte]: checkInDate,
+        },
+        checkOut: {
+          [Op.gte]: checkOutDate,
+        },
+      },
+    },
+  };
 };
 
 module.exports = {
   addPriceOption,
   onlyIntOptionValue,
+  checkReservationOption,
 };
