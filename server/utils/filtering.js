@@ -49,12 +49,25 @@ const addDatePriceOption = (req, reservedRoomIdList) => {
  * @param { String } optionName
  * @returns { Boolean }
  */
-const onlyIntOptionValue = (optionName) => {
+const onlyIntOption = (optionName) => {
   const priceResult = !optionName.includes('Price');
-  const nameResult = !optionName.includes('isSuperHost');
+  const hostResult = !optionName.includes('isSuperHost');
   const checkResult = !optionName.includes('check');
   const typeResult = !optionName.includes('type');
-  return priceResult && nameResult && checkResult && typeResult;
+  const nameResult = !optionName.includes('name');
+  return priceResult && hostResult && checkResult && typeResult && nameResult;
+};
+
+/**
+ * 가격,날짜에 대한 필터링 옵션이 아닌 필터링 옵션인지의 여부를 판별하는 유틸 함수
+ * isSuperHost, type, name 필터링 옵션인지의 여부를 판별
+ * @param { String } optionName
+ * @returns { Boolean }
+ */
+const notPriceCheckOption = (optionName) => {
+  const priceResult = !optionName.includes('Price');
+  const checkResult = !optionName.includes('check');
+  return priceResult && checkResult;
 };
 
 /**
@@ -99,8 +112,9 @@ const refineReservations = (reservations) => {
 
 module.exports = {
   addPriceOption,
-  onlyIntOptionValue,
+  onlyIntOption,
   checkReservationOption,
+  notPriceCheckOption,
   refineReservations,
   addDatePriceOption,
 };

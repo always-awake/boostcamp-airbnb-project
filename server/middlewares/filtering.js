@@ -1,5 +1,8 @@
 const Sequelize = require('sequelize');
-const { onlyIntOptionValue } = require('../utils/filtering');
+const {
+  onlyIntOption,
+  notPriceCheckOption,
+} = require('../utils/filtering');
 
 const { Op } = Sequelize;
 
@@ -10,7 +13,7 @@ const { Op } = Sequelize;
  * @param {*} req
  * @param {*} next
  */
-const refineFilterOptions = (req, next) => {
+const refineFilterOptions = (req, res, next) => {
   const filterOption = {};
 
   const checkIn = !!(req.query.checkIn);
@@ -20,12 +23,12 @@ const refineFilterOptions = (req, next) => {
   Object.entries(req.query).forEach((option) => {
     const optionName = option[0];
     const optionValue = option[1];
-    if (onlyIntOptionValue(optionName)) {
+    if (onlyIntOption(optionName)) {
       filterOption[optionName] = {
         [Op.gte]: parseInt(optionValue, 10),
       };
-    } else if (optionName.includes('isSuperHost')) {
-      filterOption[optionName] = optionName;
+    } else if (notPriceCheckOption(optionName)) {
+      filterOption[optionName] = optionValue;
     }
   });
   req.filterOption = filterOption;
