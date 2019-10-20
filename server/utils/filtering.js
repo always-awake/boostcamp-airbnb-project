@@ -74,8 +74,20 @@ const checkReservationOption = ({ checkIn, checkOut }) => {
   };
 };
 
+/**
+ * 매개 변수로 받은 예약 리스트 내 roomId 들을 중복없는 리스트로 리턴하는 유틸함수
+ * @param {Array} reservedRoomList
+ */
+const refineReservations = (reservations) => {
+  const reservedRoomIdList = reservations.map((reservation) => {
+    return reservation.roomId;
+  });
+  return Array.from(new Set(reservedRoomIdList));
+};
+
 module.exports = {
   addPriceOption,
   onlyIntOptionValue,
   checkReservationOption,
+  refineReservations,
 };
