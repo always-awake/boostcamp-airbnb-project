@@ -19,13 +19,9 @@ const addPriceOption = (req) => {
       [Op.lte]: parseInt(maxPrice, 10),
     };
   } else if (minPrice) {
-    filterOption.price = {
-      [Op.gte]: parseInt(minPrice, 10),
-    };
+    filterOption.price = { [Op.gte]: parseInt(minPrice, 10) };
   } else if (maxPrice) {
-    filterOption.price = {
-      [Op.lte]: parseInt(maxPrice, 10),
-    };
+    filterOption.price = { [Op.lte]: parseInt(maxPrice, 10) };
   }
   return filterOption;
 };
@@ -38,9 +34,7 @@ const addPriceOption = (req) => {
  */
 const addDatePriceOption = (req, reservedRoomIdList) => {
   const filterOption = addPriceOption(req);
-  filterOption.id = {
-    [Op.notIn]: reservedRoomIdList,
-  };
+  filterOption.id = { [Op.notIn]: reservedRoomIdList };
   return filterOption;
 };
 
@@ -80,22 +74,12 @@ const checkReservationOption = ({ checkIn, checkOut }) => {
   return {
     [Op.or]: {
       [Op.or]: {
-        checkIn: {
-          [Op.gte]: checkInDate,
-          [Op.lt]: checkOutDate,
-        },
-        checkOut: {
-          [Op.gt]: checkInDate,
-          [Op.lt]: checkOutDate,
-        },
+        checkIn: { [Op.gte]: checkInDate, [Op.lt]: checkOutDate },
+        checkOut: { [Op.gt]: checkInDate, [Op.lt]: checkOutDate },
       },
       [Op.and]: {
-        checkIn: {
-          [Op.lte]: checkInDate,
-        },
-        checkOut: {
-          [Op.gte]: checkOutDate,
-        },
+        checkIn: { [Op.lte]: checkInDate },
+        checkOut: { [Op.gte]: checkOutDate },
       },
     },
   };
