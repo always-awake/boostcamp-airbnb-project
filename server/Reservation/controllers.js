@@ -30,13 +30,11 @@ const createReservation = async (req, res) => {
       babyCount,
       roomId,
     });
-    res.status(201);
-    res.json({
+    res.status(201).json({
       msg: 'Make reservation success!',
     });
   } catch (e) {
-    res.status(500);
-    res.json({
+    res.status(500).json({
       msg: 'Sorry Try again!',
     });
   }

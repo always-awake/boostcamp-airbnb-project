@@ -46,8 +46,7 @@ const filterWithoutDate = async (req, res) => {
     const roomList = await roomModel.findAll({
       where: addPriceOption(req),
     });
-    res.status(200);
-    res.json({
+    res.status(200).json({
       msg: 'Filtering Success!',
       data: {
         dataCount: roomList.length,
@@ -55,8 +54,7 @@ const filterWithoutDate = async (req, res) => {
       },
     });
   } catch (e) {
-    res.status(500);
-    res.json({
+    res.status(500).json({
       msg: 'Sorry Try again!',
     });
   }

@@ -22,24 +22,21 @@ const login = async (req, res) => {
   if (user) {
     const { accountPw, salt } = user.dataValues;
     if (checkPwValidation(userPw, accountPw, salt)) {
-      res.status(200);
       res.cookie(
         'jwtToken',
         createJwtToken(user, '5m'),
         { httpOnly: true, signed: true },
       );
-      res.json({
+      res.status(200).json({
         msg: 'login success!',
       });
     } else {
-      res.status(401);
-      res.json({
+      res.status(401).json({
         msg: 'worng Pw! try again!',
       });
     }
   } else {
-    res.status(401);
-    res.json({
+    res.status(401).json({
       msg: 'worng Id! try again!',
     });
   }
@@ -61,22 +58,20 @@ const signUp = async (req, res) => {
       accountPw: hashPassword,
       name: userName,
       salt: uuidSalt,
-    }) || false;
+    });
 
     if (newUser) {
-      res.status(201);
       res.cookie(
         'jwtToken',
         createJwtToken(newUser, '5m'),
         { httpOnly: true, signed: true },
       );
-      res.json({
+      res.status(201).json({
         msg: 'sign up success!',
       });
     }
   } catch (e) {
-    res.status(500);
-    res.json({
+    res.status(500).json({
       msg: 'sign up fail! Input another userID!',
     });
   }
