@@ -31,6 +31,20 @@ const addPriceOption = (req) => {
 };
 
 /**
+ * filterOption 객체에 가격과 날짜에 대한 필터링 옵션을 추가해주는 유틸 함수
+ * 매개변수로 받은 reservedRoomIdList 내에 있는 id 값을 갖고 있지 않은 숙소 목록을 필터링
+ * @param {*} req
+ * @param { Array } reservedRoomIdList
+ */
+const addDatePriceOption = (req, reservedRoomIdList) => {
+  const filterOption = addPriceOption(req);
+  filterOption.id = {
+    [Op.notIn]: reservedRoomIdList,
+  };
+  return filterOption;
+};
+
+/**
  * 정수값을 갖고 있지 않은 필터링 옵션인지의 여부를 판별하는 유틸 함수
  * @param { String } optionName
  * @returns { Boolean }
@@ -90,4 +104,5 @@ module.exports = {
   onlyIntOptionValue,
   checkReservationOption,
   refineReservations,
+  addDatePriceOption,
 };
