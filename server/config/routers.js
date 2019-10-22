@@ -5,8 +5,9 @@ const roomRouter = require('../Room/routers');
 
 const router = express.Router();
 
-router.use('/users', userRouter);
-router.use('/reservations', reservationRouter);
-router.use('/rooms', roomRouter);
+router
+  .use('/rooms', roomRouter)
+  .use('/users', userRouter)
+  .use('/reservations', reservationRouter);
 
 module.exports = router;

@@ -5,3 +5,9 @@ node_modules
 .DS_Store
 
 # server's .gitignore file list
+server/node_modules
+server/utils/batchJob/csv
+
+# client's .gitignore file list
+client/node_modules
+client/dist

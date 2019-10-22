@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/db');
+const roomModel = require('../Room/models');
+const reservationModel = require('../Reservation/models');
 
 const user = sequelize.define('user', {
   id: {
@@ -27,5 +29,27 @@ const user = sequelize.define('user', {
 }, {
   tableName: 'users',
 });
+
+user.hasMany(
+  reservationModel, {
+    as: 'reservations',
+    foreignKey: {
+      name: 'guestId',
+      allowNull: false,
+    },
+    sourceKey: 'id',
+  },
+);
+
+user.hasMany(
+  roomModel, {
+    as: 'rooms',
+    foreignKey: {
+      name: 'hostId',
+      allowNull: false,
+    },
+    sourceKey: 'id',
+  },
+);
 
 module.exports = user;
