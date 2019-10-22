@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import Logo from '../../components/logo/logo.jsx';
 import SerachBar from '../../components/searchBar/searchBar.jsx';
 
-const Header = styled.header`
+const HeaderContainer = () => {
+  const Header = styled.header`
   display: flex;
   flex-display: row;
   align-items: center;
-`;
-
-const HeaderContainer = () => {
+  `;
+  
   return (
     <Header>
       <Logo />
