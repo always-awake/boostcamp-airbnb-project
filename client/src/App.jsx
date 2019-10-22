@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from './containers/header/header.jsx';
+import SearchPage from './containers/searchPage/searchPage.jsx';
 
 const App = () => {
   return (
-    <Header />
+    <SearchPage />
   );
 };
 
