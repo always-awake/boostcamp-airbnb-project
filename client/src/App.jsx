@@ -1,9 +1,9 @@
 import React from 'react';
-import SearchPage from './containers/searchPage/searchPage.jsx';
+import SearchView from './containers/searchView/searchView.jsx';
 
 const App = () => {
   return (
-    <SearchPage />
+    <SearchView />
   );
 };
 

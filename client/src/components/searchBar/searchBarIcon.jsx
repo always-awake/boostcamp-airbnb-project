@@ -1,25 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
+import * as S from './styles.jsx';
 
-const searchIcon = () => {
+const SearchIcon = () => {
   const SEARCH_BAR_ICON = '../../../assets/icon/search_icon.png';
   const SEARCH_BAR_ALT = 'search-bar-icon';
-
-  const SearchIconDiv = styled.div`
-  height: 22px;
-  weight: 22px;
-  margin-left: 10px;
-  `;
-  const SearchIcon = styled.img`
-  height: 100%;
-  weight: 100%;
-  `;
-
   return (
-    <SearchIconDiv>
-      <SearchIcon src={SEARCH_BAR_ICON} alt={SEARCH_BAR_ALT} />
-    </SearchIconDiv>
+    <S.SearchIconDiv>
+      <S.SearchIcon src={SEARCH_BAR_ICON} alt={SEARCH_BAR_ALT} />
+    </S.SearchIconDiv>
   );
 };
 
-export default searchIcon;
+export default SearchIcon;
