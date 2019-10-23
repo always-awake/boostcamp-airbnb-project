@@ -17,5 +17,16 @@ const convertToKoreanType = (roomType) => {
   }
 };
 
+/**
+ * 숙소 타입과 침대 개수를 매개변수로 받아, 알맞은 형태의 숙소 메인 상세정보 문자열을 리턴하는 유틸 함수
+ * @param {*} type
+ * @param {*} bedCount
+ */
+const refineRoomMainSpec = (type, bedCount) => {
+  const koreanType = convertToKoreanType(type);
+  return `${koreanType} · 침대 ${bedCount}개`;
+};
+
 export {
+  refineRoomMainSpec,
 };
