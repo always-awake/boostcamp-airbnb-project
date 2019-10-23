@@ -1,25 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
+import * as S from './styles.jsx';
 
-const LOGO_IMG_PATH = '../../../assets/img/airbnb-logo.png';
-const LOGO_IMG_ALT = 'airbnb-logo';
-
-const logo = () => {
-  const Logo = styled.div`
-  height: 35px;
-  weight: 35px;
-  margin: 0 25px 0 25px;
-  `;
-  const LogoImg = styled.img`
-  height: 100%;
-  weight: 100%;
-  `;
+const Logo = () => {
+  const LOGO_IMG_PATH = '../../../assets/img/airbnb-logo.png';
+  const LOGO_IMG_ALT = 'airbnb-logo';
 
   return (
-    <Logo>
-      <LogoImg src={LOGO_IMG_PATH} alt={LOGO_IMG_ALT} />
-    </Logo>
+    <S.Logo>
+      <S.LogoImg src={LOGO_IMG_PATH} alt={LOGO_IMG_ALT} />
+    </S.Logo>
   );
 };
 
-export default logo;
+export default Logo;

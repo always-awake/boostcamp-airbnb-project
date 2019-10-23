@@ -1,25 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
+import * as S from './styles.jsx';
 import SearchBarIcon from './searchBarIcon.jsx';
 import SearchInput from './searchInput.jsx';
 
-const searchBar = () => {
-  const SearchBar = styled.div`
-  display: flex;
-  align-items: center;
-  height: 48px;
-  width: 460px;
-  border: 1px solid #EBEBEB;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  `;
-
+const SearchBar = () => {
   return (
-    <SearchBar>
+    <S.SearchBar>
       <SearchBarIcon />
       <SearchInput />
-    </SearchBar>
+    </S.SearchBar>
   );
 };
 
-export default searchBar;
+export default SearchBar;
