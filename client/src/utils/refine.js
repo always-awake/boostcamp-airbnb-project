@@ -40,7 +40,18 @@ const refineRoomSubSpec = (headCount, bedroomCount, bathroomCount) => {
   return `인원 ${headCount}명 · 침실${bedroomCount}개 · 욕실${bathroomCount}개`;
 };
 
+/**
+ * 옵션 목록 문자열을 매개변수로 받아, 알맞은 형태의 숙소 옵션 문자열을 리턴하는 유틸 함수
+ * @param { String } option
+ * @returns { String } Room's option String
+ */
+const refineRoomOptions = (option) => {
+  const optionList = option.split(',');
+  return optionList.join(' · ');
+};
+
 export {
   refineRoomMainSpec,
   refineRoomSubSpec,
+  refineRoomOptions,
 };
