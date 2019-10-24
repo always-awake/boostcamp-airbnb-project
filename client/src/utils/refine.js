@@ -50,8 +50,22 @@ const refineRoomOptions = (option) => {
   return optionList.join(' · ');
 };
 
+/**
+ * url과 query 정보를 담고 있는 객체를 매개변수로 받아, 쿼리 스트링을 포함한 url을 리턴하는 유틸 함수
+ * @param { String } url
+ * @param { Object } urlQuery
+ */
+const refineurl = (url, urlQuery) => {
+  const queryList = [];
+  Object.keys(urlQuery).forEach((key) => {
+    if (urlQuery[key] !== null) queryList.push(`${key}=${urlQuery[key]}`);
+  });
+  return (queryList) ? `${url}?${queryList.join('&')}` : url;
+};
+
 export {
   refineRoomMainSpec,
   refineRoomSubSpec,
   refineRoomOptions,
+  refineurl,
 };
