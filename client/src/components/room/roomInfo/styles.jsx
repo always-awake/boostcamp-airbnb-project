@@ -20,13 +20,14 @@ export const RoomTitle = styled.div`
 `;
 
 export const RoomSubSpec = styled.div`
-  margin-top: 20px;
+  margin-top: 10px;
   font-weight: lighter;
   color: #717171;
   font-size: 15px;
 `;
 
 export const RoomOption = styled.div`
+  margin-top: 2px;
   font-weight: lighter;
   color: #717171;
   font-size: 15px;
