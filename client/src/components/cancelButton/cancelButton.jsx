@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import * as S from './styles.jsx';
 
 const CancelButton = (props) => {
-  const { countModalDispatch } = props;
-  const resetAllCountValue = () => countModalDispatch({ type: 'resetCount' });
+  const { modalDispatch } = props;
+  const resetValue = () => modalDispatch({ type: 'reset' });
   return (
-    <S.CancelButton onClick={resetAllCountValue}>
+    <S.CancelButton onClick={resetValue}>
       지우기
     </S.CancelButton>
   );
 };
 
 CancelButton.propTypes = {
-  countModalDispatch: PropTypes.func.isRequired,
+  modalDispatch: PropTypes.func.isRequired,
 };
 
 export default CancelButton;
