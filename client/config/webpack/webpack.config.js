@@ -1,9 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+require('babel-polyfill');
 
 const config = {
   mode: 'development',
-  entry: path.resolve(__dirname, '../../src/index.jsx'),
+  entry: ['babel-polyfill', path.resolve(__dirname, '../../src/index.jsx')],
   output: {
     path: path.resolve(__dirname, '../../dist/'),
     filename: 'index.bundle.js',
@@ -24,10 +25,14 @@ const config = {
           presets: ['@babel/preset-env', '@babel/preset-react'],
         },
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   devServer: {
-    port: 3000,
+    port: 4000,
   },
   plugins: [
     new HtmlWebpackPlugin({
