@@ -1,7 +1,6 @@
-/* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
 
-export const FilteringButton = styled.div`
+export const FilteringButton = styled.button`
   display: flex;
   flex-display: row;
   align-items: center;
@@ -12,4 +11,16 @@ export const FilteringButton = styled.div`
   border: 1px solid #B0B0B0;
   border-radius: 30px;
   color: #222222;
+  font-size: 14px;
+  outline: none;
+
+  &:hover {
+    border: 1px solid #222222;
+    background-color: #F2F2F2;
+    cursor: pointer;
+  }
+
+  &:focus {
+    border: 1px solid #222222;
+  }
 `;
