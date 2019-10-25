@@ -3,17 +3,19 @@ import PropTypes from 'prop-types';
 import * as S from './styles.jsx';
 
 const FilteringButton = (props) => {
-  const { filteringOption } = props;
-
+  const { optionValue, dispatch } = props;
   return (
-    <S.FilteringButton>
-      {filteringOption}
+    <S.FilteringButton
+      onClick={() => dispatch({ type: 'changeModalActive' })}
+    >
+      {optionValue}
     </S.FilteringButton>
   );
 };
 
 FilteringButton.propTypes = {
-  filteringOption: PropTypes.string.isRequired,
+  optionValue: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default FilteringButton;
