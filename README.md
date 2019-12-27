@@ -10,7 +10,7 @@
 ## 폴더 및 주요 소스 파일 구조
 ### server (도메인별로 폴더구분)
 ```
-4_clone_airbnb
+membership-airbnb
 └── server
     └── config
     └── middlewares
@@ -26,7 +26,7 @@
 
 ### client(web)
 ```
-4_clone_airbnb
+membership-airbnb
 └── client
     └── assets
         └── icon
